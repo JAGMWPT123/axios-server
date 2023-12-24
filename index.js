@@ -10,6 +10,9 @@ const PORT = 5000;
 
 const rooms = [];
 
+// Your existing Socket.io logic here...
+
+// HTTP endpoint to create a room
 app.post('/api/create-room', (req, res) => {
   const roomId = generateRoomId();
   const newRoom = {
@@ -21,6 +24,7 @@ app.post('/api/create-room', (req, res) => {
   res.json({ newRoom });
 });
 
+// HTTP endpoint to join a room
 app.post('/api/join-room', (req, res) => {
   const { roomId, username } = req.body;
   const room = rooms.find((r) => r.roomId === roomId);
@@ -32,6 +36,8 @@ app.post('/api/join-room', (req, res) => {
     res.status(404).json({ error: 'Room not found' });
   }
 });
+
+// Your existing routes here...
 
 app.get('/', (req, res) => {
   const data = { message: 'Server says hello' };
