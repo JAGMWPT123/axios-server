@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { createServer } = require('http');
 const app = express();
+const httpServer = createServer(app);
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
@@ -41,10 +43,10 @@ app.post('/api/join-room', (req, res) => {
 
 app.get('/', (req, res) => {
   const data = { message: 'Server says hello' };
-  res.json(data);
+  res.json(data.message);
 });
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
